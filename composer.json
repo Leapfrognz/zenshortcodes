@@ -1,5 +1,5 @@
 {
-    "name": "silverstripe/zenshortcodes",
+    "name": "Leapfrognz/silverstripe-zenshortcodes",
     "description": "Shortcode management",
     "type": "silverstripe-module",
     "keywords": ["silverstripe", "shortcodes"],
