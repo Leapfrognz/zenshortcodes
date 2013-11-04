@@ -23,8 +23,8 @@ class ZenHtmlEditorField_Toolbar extends HtmlEditorField_Toolbar {
 	 */
 	public function __construct($controller, $name) {
 		parent::__construct($controller, $name);
-		Requirements::javascript('zenshortcodes/js/zenshortcodes.js');
-		Requirements::css('zenshortcodes/css/zenshortcodes.css');
+		Requirements::javascript(ZENSHORTCODES_PATH.'/js/zenshortcodes.js');
+		Requirements::css(ZENSHORTCODES_PATH.'/css/zenshortcodes.css');
 	}
 
 	/**

@@ -11,9 +11,8 @@
 
 		getInfo : function() {
 			return {
-				longname : 'Zen shortcode inserter for tinymce for SilverStripe CMS',
+				longname : 'Zen shortcode inserter for tinymce for SilverStripe 3.1',
 				author : 'James Ayers',
-				authorurl : 'http://www.dna.co.nz/',
 				version : "1.0"
 			};
 		},
@@ -23,7 +22,7 @@
 			ed.addButton('zenshortcodes', {
 				title: ed.getLang('tinymce_zenshortcodes.insertZenShortcode'), 
 				cmd: 'zenshortcodes', 
-				image: '/zenshortcodes/img/zenshortcode.gif'
+				image: url + '/img/zenshortcode.gif'
 			}); 
 
 			ed.addCommand('zenshortcodes', function(ed) {
