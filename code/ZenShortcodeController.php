@@ -159,22 +159,22 @@ class ZenShortcodeController extends LeftAndMain {
 				exit;
 			}
 
-			$type = $do->ClassName;
+			$class = $do->ClassName;
 
 		} else {
 
-			$type = $data['ZenShortcodeType'];
+			$class = $data['ZenShortcodeType'];
 			
-			if(!class_exists($type)) {
-				$message = "Shortcode $type not found";
+			if(!class_exists($class)) {
+				$message = "Shortcode $class not found";
 				echo $message;
 				exit;
 			}
 
-			$do = new $type();
+			$do = new $class();
 
 			if(!is_subclass_of($do, 'ZenShortcode')) {
-				$message = "$type is not a zen shortcode";
+				$message = "$class is not a zen shortcode";
 				echo $message;
 				exit;
 			}
@@ -191,8 +191,11 @@ class ZenShortcodeController extends LeftAndMain {
 		// 		}
 		// 	//}
 		// }
-
-		$form->saveInto($do);
+		
+		// only save the fields associated with theis object
+		$fields = array_keys(DataObject::database_fields($class));
+			
+		$form->saveInto($do, $fields);
 
 		$do->write();
 
