@@ -1,0 +1,38 @@
+
+.htmleditorfield-dialog .insert-zenshortcode {
+	padding: 8px 16px;
+}
+
+.zen-shortcode {
+	display: block;
+	padding: 7px;
+	border: 1px solid #eee;
+	cursor: pointer;
+}
+
+.zen-shortcode:hover {
+	cursor: pointer;
+}
+
+.zen-shortcode-selected {
+	background: yellow;
+	border: 1px solid #333;
+}
+
+.ZenShortcodeGroup .field,
+.zenshortcode_select {
+	padding: 10px 12px;
+}
+
+.ZenShortcodeGroupHidden {
+	display: none;
+}
+
+.zen-error {
+	font-size: 14px;
+	background: #B84949;
+	border-radius: 5px;
+	padding: 10px;
+	margin: 0 10px;
+	color: #fff;
+}
