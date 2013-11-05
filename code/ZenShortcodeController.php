@@ -123,7 +123,7 @@ class ZenShortcodeController extends LeftAndMain {
 		$form->setFormAction("/ZenShortcodeController/ZenShortcodeForm");
 
 		if($do) {
-			$form->loadDataFrom($do);
+			$form->loadDataFrom($do, 'CLEAR_MISSING');
 
 			// Namespace the fields: TODO
 			// foreach($classFields as $field) {
@@ -194,7 +194,14 @@ class ZenShortcodeController extends LeftAndMain {
 		
 		// only save the fields associated with theis object
 		$fields = array_keys(DataObject::database_fields($class));
-			
+
+		// add in relations..  TODO
+		foreach($data as $k => $v) {
+			if($do->hasMethod($k)) {
+				$fields[] = $k;
+			}
+		}
+
 		$form->saveInto($do, $fields);
 
 		$do->write();
