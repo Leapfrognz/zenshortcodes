@@ -15,6 +15,9 @@ class ZenShortcode extends DataObject {
 		if(!isset($arguments['id'])) return null;
 		
 		$zenShortcode = ZenShortCode::get()->ById(Convert::raw2sql($arguments['id']));
+		
+		// need to get the join data so query again using the classname
+		//$zenShortcode = $class::get()->ById($class->ID);
 
 		if(!$zenShortcode) return null;
 
