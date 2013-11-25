@@ -123,6 +123,9 @@ class ZenShortcodeController extends LeftAndMain {
 		$form->setFormAction("/ZenShortcodeController/ZenShortcodeForm");
 
 		if($do) {
+
+
+			
 			$form->loadDataFrom($do, 'CLEAR_MISSING');
 
 			// Namespace the fields: TODO

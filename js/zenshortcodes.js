@@ -27,11 +27,6 @@
 					$('body').append(dialog);
 				}
 
-				$('.ui-dialog').css({
-					width: '1000px',
-					left: '450px'
-				})
-
 				dialog.open();
 
 				$.ajax({
@@ -40,10 +35,10 @@
 						dialog.removeClass('loading');
 					},
 					success: function(html) {
-						$('.ui-dialog').css({
-							width: '1000px',
-							left: '450px'
-						});
+						// $('.ui-dialog').css({
+						// 	width: '1000px',
+						// 	left: '450px'
+						// });
 						dialog.html(html);
 						dialog.getForm().setElement(self);
 						dialog.trigger('ssdialogopen');
@@ -54,7 +49,7 @@
 
 		});
 
-		// handle change of type
+		// handle change of type select
 		$('select[name=ZenShortcodeType]').entwine({
 
 			onchange: function(e) {
@@ -85,6 +80,8 @@
 
 				var data = $(this).serialize();
 
+				var type = 'test';
+
 				var url = $(this).attr('action');
 
 				$.ajax({
@@ -94,7 +91,7 @@
 					type: 'post',
 					success: function(model) {
 						self.modifySelection(function(ed){
-						 	self.insertShortCode(ed, model);
+						 	self.insertShortCode(ed, model, type);
 						 	ed.repaint();
 						});
 						self.getDialog().close();
@@ -106,9 +103,14 @@
 
 			insertShortCode: function(ed, model) {
 
+				var typeArr = model.ClassName.match(/[A-Z][a-z]+/g);
+				var type = typeArr.join(' ');
+
+
 				this.setBookmark(ed.createBookmark());
 
-				var code = '<div class="zen-shortcode" data-shortcodeID="' + model.ID + '" contenteditable="false">[zenshortcode id="' + model.ID + '" /]</div>';
+				var code = '<div class="zen-shortcode" data-shortcodeType="' + type + ' data-shortcodeID="' + model.ID + '" ' +
+				'contenteditable="false">[zenshortcode type="' + type + '" id="' + model.ID + '" /]</div>';
 
 				var node = this.getSelection();
 
@@ -130,78 +132,6 @@
 			},
 
 		});
-
-
-
-
-
-
-
-
-
-/*
-
-		// handle actions on the shortcode selection dialog
-		$('form.htmleditorfield-zenshortcodeform').entwine({
-
-			onsubmit: function(e) {
-
-				var self = this,
-						type = this.find('select[name=ZenShortcodeType]').val();
-
-				if(!type || type == '') {
-					alert('Please select a shortcode type');
-					return false;
-				} 
-
-				this.find('select[name=ZenShortcodeType]').val('').trigger('liszt:updated');
-				this.openShortcodeDialog(type);
-
-				return false;
-
-			},
-
-			openShortcodeDialog: function(type) {
-
-				var self = this, 
-						ed = this.getEditor(),
-						selected = $(ed.getSelectedNode()).clone(),
-						content = $('<div />').append(selected).html(),
-						pageID = $('input[name=ID]').val(),
-						url = $('#cms-editor-dialogs').data('url-zenshortcodebase') + type + '?pageID=' + pageID + '&content=' + encodeURIComponent(content),
-						dialog = $('.htmleditorfield-zenshortcodedialog');
-				
-				var editor = $('#' + ed.getInstance().id);
-
-				if(dialog.length) {
-					dialog.html('');
-					dialog.addClass('loading');
-				} else {
-					dialog = $('<div class="htmleditorfield-dialog htmleditorfield-zenshortcodedialog loading">');
-					$('body').append(dialog);
-				}
-
-				dialog.open();
-
-				$.ajax({
-					url: url,
-					complete: function() {
-						dialog.removeClass('loading');
-					},
-					success: function(html) {
-						dialog.html(html);
-						dialog.getForm().setElement(editor);
-						dialog.trigger('ssdialogopen');
-					}
-				});
-
-
-			}
-
-		});
-
-*/
-
 
 	});
 
