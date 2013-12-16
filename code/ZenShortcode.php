@@ -21,18 +21,7 @@ class ZenShortcode extends DataObject {
 
 		if(!$zenShortcode) return null;
 
-		$str = $zenShortcode->parser($arguments, $content, $parser, $shortcode);
-
-		// strip the outer div which will always be .zen-shortcode 
-		$doc = new DOMDocument();
-		$doc->loadHTML($str);
-		$node = $doc->getElementsByTagName('div')->item(0);
-		$str = $doc->saveHTML($node);
-
-		//echo $str;
-		//exit;
-
-		return $str;
+		return $zenShortcode->parser($arguments, $content, $parser, $shortcode);
 
 	}
 
