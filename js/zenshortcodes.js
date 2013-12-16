@@ -109,7 +109,7 @@
 
 				this.setBookmark(ed.createBookmark());
 
-				var code = '<div class="zen-shortcode" data-shortcodeType="' + type + ' data-shortcodeID="' + model.ID + '" ' +
+				var code = '<div class="zen-shortcode" data-shortcodeType="' + type + '" data-shortcodeID="' + model.ID + '" ' +
 				'contenteditable="false">[zenshortcode type="' + type + '" id="' + model.ID + '" /]</div>';
 
 				var node = this.getSelection();
